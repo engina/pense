@@ -1,0 +1,14 @@
+AC_INIT(configure.in)
+
+AM_CONFIG_HEADER(config.h)
+AM_INIT_AUTOMAKE(pensedemo, 0.1)
+
+AC_LANG_CPLUSPLUS
+AC_PROG_CXX
+AM_PROG_LIBTOOL
+
+AC_OUTPUT(Makefile src/Makefile)
+PKG_CHECK_MODULES(PENSE, libpense, HAVE_PENSE=yes,HAVE_PENSE=no)
+if test "x$HAVE_PENSE" = "xno"; then
+  AC_MSG_ERROR(you need libpense installed)
+fi

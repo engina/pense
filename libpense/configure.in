@@ -1,0 +1,10 @@
+AC_INIT(configure.in)
+
+AM_CONFIG_HEADER(config.h)
+AM_INIT_AUTOMAKE(libpense, 0.1)
+
+AC_LANG_CPLUSPLUS
+AC_PROG_CXX
+AM_PROG_LIBTOOL
+
+AC_OUTPUT(Makefile pense/Makefile pense/devices/Makefile pense/algorithms/Makefile pense/algorithms/fuzzylogic/Makefile libpense.pc pense/devices/plants/Makefile pense/devices/sources/Makefile pense/devices/controllers/Makefile)

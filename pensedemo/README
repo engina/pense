@@ -1,0 +1,62 @@
+This package contains demos of libpense.
+
+There are four programs in this package:
+
+1) dc_motor: DC Motor simulation demonstration
+2) fuzzy_logic: Fuzzy Logic triangle creation and evaluation demonstration
+3) pwm_controller: PWM controlling demonstration
+4) pensedemo: complete system demonstration.
+
+1) DC Motor Simulation.
+This program is straight-forward, it doesn't take any parameters from user, it
+just simulates the motor from a given set of parameters, and show parameter
+values in each iteration.
+
+2) Fuzzy Logic.
+This programs takes inputs from user to create a set of input and output
+triangles and then user gives input values and evaluates the fuzzy logic
+crisp output. A sample output of the program is as follows;
+
+$ ./fuzzy_logic
+Input triangle [start end name] (-1 to next step): 2000 2100 slow
+$ Adding input triangle[2000,2100,slow]
+Input triangle [start end name] (-1 to next step): 2050 2150 about_right
+$ Adding input triangle[2050,2150,about_right]
+Input triangle [start end name] (-1 to next step): 2100 2200 fast
+$ Adding input triangle[2100,2200,fast]
+Input triangle [start end name] (-1 to next step): -1
+Output triangle [start end name partner] (-1 to next step): 0 10 slowen fast
+$ Adding output triangle[0,10,slowen,fast]
+Output triangle [start end name partner] (-1 to next step): 5 15 dont_change about_right
+$ Adding output triangle[5,15,dont_change,about_right]
+Output triangle [start end name partner] (-1 to next step): 10 20 fasten slow
+$ Adding output triangle[10,20,fasten,slow]
+Output triangle [start end name partner] (-1 to next step): -1
+Now, the fun part. Enter input values to evaluate.
+Input: 0
+Input is a way too low, I'm making it member of slow with degree 1!
+Result: 15
+Input: 5000
+Input is a way too high, I'm making it member of fast with degree 1!
+Result: 5
+Input: 2110
+Member of about_right with degree 0.800000
+Member of fast with degree 0.200000
+Result: 9
+
+3) PWM Controller
+PWM controlling is giving full power to the plant but within a certain
+amount of time, i.e. 50% of the time give full power.
+This is essential for controlling a DC motor, because unless full power is
+supplied to the motor, the torque might be not enough in low powers to rotate
+the motor.
+This program requests two parameter from the user, one is system frequency;
+which is how many iteration will be made in a second, and second is the
+percentage of the PWM output.
+Say, if there is 100 iterations in a second, and the PWM cycle percentage is
+15, then in 15 iterations out of 100 there will be ON signal from the PWM
+controller.
+
+4) This is a complete system simulation using libpense.
+It's controlling a DC motors RPM (angular velocity to be accurate) using
+fuzzy logic algorithm in a generic controller device.
